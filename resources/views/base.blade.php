@@ -39,14 +39,14 @@
                         <span class="text">Dashboard</span>
                     </a>
                 </li>
-                <li class="menu-item has-submenu {{ (in_array(request()->segment(1), ['prescription', 'appointment', 'feedback'])) ? 'active' : '' }}">
+                <li class="menu-item has-submenu {{ (in_array(request()->segment(1), ['prescription', 'appointments', 'appointment', 'feedback', 'feedbacks'])) ? 'active' : '' }}">
                     <a class="menu-link" href="#"> <i class="icon material-icons md-plus"></i>
                         <span class="text">Main Menu</span>
                     </a>
                     <div class="submenu">
                         <a href="{{ route('prescription') }}">My Prescriptions</a>
-                        <a href="{{ route('appointment') }}">My Appointments</a>
-                        <a href="{{ route('feedback') }}">My Feedbacks</a>
+                        <a href="{{ route('appointments') }}">My Appointments</a>
+                        <a href="{{ route('feedbacks') }}">My Feedback</a>
                     </div>
                 </li>
             </ul>
@@ -63,7 +63,7 @@
                         <a class="nav-link btn-icon darkmode" href="#"> <i class="material-icons md-nights_stay"></i> </a>
                     </li>
                     <li class="dropdown nav-item">
-                        <a class="dropdown-toggle" data-bs-toggle="dropdown" href="#" id="dropdownAccount" aria-expanded="false"> <img class="img-xs rounded-circle" src="{{ (!empty(Auth::user()->photo)) ? url(Auth::user()->photo) : asset('/assets/imgs/people/avatar1.jpg') }}" alt="User"></a>
+                        <a class="dropdown-toggle" data-bs-toggle="dropdown" href="#" id="dropdownAccount" aria-expanded="false"> <img class="img-xs rounded-circle" src="{{ asset('/assets/imgs/people/avatar1.jpg') }}" alt="User"></a>
                         <div class="dropdown-menu dropdown-menu-end" aria-labelledby="dropdownAccount">
                             <a class="dropdown-item" href="{{ route('dashboard') }}"><strong>Hi, {{ $patient->patient_name }}</strong></a>
                             <a class="dropdown-item text-danger" href="{{ route('logout') }}"><i class="material-icons md-exit_to_app"></i>Logout</a>
@@ -100,8 +100,6 @@
     <script src="https://cdn.datatables.net/1.13.6/js/jquery.dataTables.min.js" type="text/javascript"></script>    
     <script src="https://cdn.datatables.net/1.13.6/js/dataTables.bootstrap5.min.js" type="text/javascript"></script>    
     <script src="{{ asset('/assets/js/script.js') }}" type="text/javascript"></script>
-
-    @include("message")
 </body>
 
 </html>

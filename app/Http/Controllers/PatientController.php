@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Config;
 use Illuminate\Support\Facades\Validator;
@@ -66,6 +67,71 @@ class PatientController extends Controller
         $patient = DB::table('patient_registrations')->find(Session::get('patient')->id);      
         $pdf = PDF::loadView('/prescription/pdf', ['spectacle' => $spectacle, 'patient' => $patient]);    
         return $pdf->stream('prescription.pdf', array("Attachment"=>0));
+    }
+
+    public function appointments(){
+        $data = DB::table('appointments')->where('patient_id', Session::get('patient')->id)->orWhere('mobile_number', Session::get('patient')->mobile_number)->latest()->get();
+        return view('appointment.index', compact('data'));
+    }
+
+    public function appointment(){
+        $branches = DB::table('branches')->get();
+        return view('appointment.create', compact('branches'));
+    }
+
+    public function saveAppointment(Request $request){
+        $this->validate($request, [
+            'patient_name' => 'required',
+            'mobile_number' => 'required|numeric|digits:10',
+            'gender' => 'required',
+            'age' => 'required',
+            'address' => 'required',
+            'patient_id' => 'required',
+            'appointment_date' => 'required',
+            'branch' => 'required',
+        ]);
+
+        DB::table('appointments')->insert([
+            'patient_name' => $request->patient_name,
+            'mobile_number' => $request->mobile_number,
+            'gender' => $request->gender,
+            'age' => $request->age,
+            'address' => $request->address,
+            'patient_id' => $request->patient_id,
+            'appointment_date' => $request->appointment_date,
+            'branch' => $request->branch,
+            'type' => 'app',
+            'created_by' => 0,
+            'updated_by' => 0,
+            'created_at' => Carbon::now(),
+            'updated_at' => Carbon::now(),
+        ]);
+        return redirect()->route('appointments')->with("success", "Appointment Created Successfully!");
+    }
+
+    public function feedbacks(){
+        $data = DB::table('feedback')->where('created_by', Session::get('patient')->id)->latest()->get();
+        return view('feedback.index', compact('data'));
+    }
+
+    public function feedback(){
+        return view('feedback.create');
+    }
+
+    public function saveFeedback(Request $request){
+        $this->validate($request, [
+            'type' => 'required',
+            'feedback' => 'required',
+        ]);
+        DB::table('feedback')->insert([
+            'type' => $request->type,
+            'feedback' => $request->feedback,
+            'created_by' => Session::get('patient')->id,
+            'updated_by' => Session::get('patient')->id,
+            'created_at' => Carbon::now(),
+            'updated_at' => Carbon::now(),
+        ]);
+        return redirect()->route('feedbacks')->with("success", "Feedback Submitted Successfully!");
     }
 
     public function logout(Request $request){

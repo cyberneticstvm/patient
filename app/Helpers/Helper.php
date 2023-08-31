@@ -1,4 +1,5 @@
 <?php
+use Illuminate\Support\Facades\DB;
 
 function sendSms($sms){
     $curl = curl_init();
@@ -15,6 +16,14 @@ function sendSms($sms){
     $res = json_decode($result, true);
     //return ($res['code'] == 200) ? 200 : $res['code'];
     return $res;
+}
+
+function branches(){
+    return DB::table('branches')->get();
+}
+
+function doctors(){
+    return DB::table('doctors')->get();
 }
 
 ?>
