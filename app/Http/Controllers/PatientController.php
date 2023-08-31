@@ -33,9 +33,6 @@ class PatientController extends Controller
                 Config::set('myconfig.sms.number', $request->mobile);
                 Config::set('myconfig.sms.message', $msg);
                 $sms = sendSms(Config::get('myconfig.sms'));
-                Config::set('myconfig.sms.number', '9995050149');
-                Config::set('myconfig.sms.message', $msg);
-                $sms = sendSms(Config::get('myconfig.sms'));
                 echo "OTP has been successfully sent to registered mobile number!";
             else:
                 echo "No records found with provided mobile number!";
