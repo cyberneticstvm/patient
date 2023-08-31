@@ -12,7 +12,7 @@
     <meta property="og:url" content="">
     <meta property="og:image" content="">
     <!-- Favicon -->
-    <link rel="shortcut icon" type="image/x-icon" href="{{ asset('/assets/imgs/theme/favicon.svg') }}">    
+    <link rel="shortcut icon" type="image/x-icon" href="{{ asset('/assets/imgs/misc/Devi-Logo-Transparent.jpg') }}">    
     <!-- Template CSS -->
     <link href="{{ asset('/assets/css/main.css') }}" rel="stylesheet" type="text/css" />
     <link href="https://cdn.datatables.net/1.13.6/css/dataTables.bootstrap5.min.css" rel="stylesheet" type="text/css" />
