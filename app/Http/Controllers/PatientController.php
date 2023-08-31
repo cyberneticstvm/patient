@@ -28,9 +28,9 @@ class PatientController extends Controller
             if($patient):
                 $otp = random_int(1000, 9999);
                 DB::table('patient_registrations')->where('mobile_number', $request->mobile)->update(['otp' => $otp]);                
-                /*Config::set('myconfig.sms.number', $request->mobile);
+                Config::set('myconfig.sms.number', $request->mobile);
                 Config::set('myconfig.sms.message', "Dear User, Your OTP for login to Devi Eye Hospital Portal is ".$otp." valid for 15 minutes. Please do not share this OTP. Regards Devi Eye Hospitals.");
-                $sms = sendSms(Config::get('myconfig.sms'));*/
+                $sms = sendSms(Config::get('myconfig.sms'));
                 echo "OTP has been successfully sent to registered mobile number!";
             else:
                 echo "No records found with provided mobile number!";
