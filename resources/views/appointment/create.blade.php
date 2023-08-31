@@ -85,7 +85,7 @@
                                 <div class="col-12">
                                     <div class="mb-3">
                                         <label class="form-label">Branch</label>
-                                        {{ html()->select($name = 'branch', $value = $branches->pluck('branch_name', 'id'), NULL)->class('form-control select2')->placeholder('Select') }}
+                                        {{ html()->select($name = 'branch', $value = $branches->pluck('display_name', 'id'), NULL)->class('form-control select2')->placeholder('Select') }}
                                         @error('branch')
                                         <small class="text-danger">{{ $errors->first('branch') }}</small>
                                         @enderror

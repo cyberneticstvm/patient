@@ -27,7 +27,7 @@
                     <div class="text">
                         <h6 class="mb-1 card-title"><span>My Appointments</span></h6>
                         <span class="text-sm">
-                            View / Make Appointments
+                            <a href="{{ route('appointments') }}">View / Make Appointments</a>
                         </span>
                     </div>
                 </article>
@@ -37,9 +37,9 @@
             <div class="card card-body mb-4">
                 <article class="icontext">
                     <div class="text">
-                        <h6 class="mb-1 card-title"><span>My Feedbacks</span></h6>
+                        <h6 class="mb-1 card-title"><span>My Feedback</span></h6>
                         <span class="text-sm">
-                            View / Submit Feedbacks
+                            <a href="{{ route('feedbacks') }}">View / Submit Feedback</a>
                         </span>
                     </div>
                 </article>
