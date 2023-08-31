@@ -18,7 +18,7 @@
                                 <div class="col-6">
                                     <div class="mb-3">
                                         <label class="form-label">Patient Name</label>
-                                        {{ html()->text($name = 'patient_name', $value = Session::get('patient')->patient_name)->class('form-control')->placeholder('Patient Name') }}
+                                        {{ html()->select($name = 'patient_name', $value = $patients->pluck('patient_name', 'patient_name'), NULL)->class('form-control select2')->placeholder('Select') }}
                                         @error('patient_name')
                                         <small class="text-danger">{{ $errors->first('patient_name') }}</small>
                                         @enderror

@@ -28,9 +28,13 @@ class PatientController extends Controller
             $patient = DB::table('patient_registrations')->where('mobile_number', $request->mobile)->first();
             if($patient):
                 $otp = random_int(1000, 9999);
-                DB::table('patient_registrations')->where('mobile_number', $request->mobile)->update(['otp' => $otp]);                
+                DB::table('patient_registrations')->where('mobile_number', $request->mobile)->update(['otp' => $otp]);
+                $msg = "Dear User, Your OTP for login to Devi Eye Hospital Portal is ".$otp." valid for 15 minutes. Please do not share this OTP. Regards Devi Eye Hospitals.";                
                 Config::set('myconfig.sms.number', $request->mobile);
-                Config::set('myconfig.sms.message', "Dear User, Your OTP for login to Devi Eye Hospital Portal is ".$otp." valid for 15 minutes. Please do not share this OTP. Regards Devi Eye Hospitals.");
+                Config::set('myconfig.sms.message', $msg);
+                $sms = sendSms(Config::get('myconfig.sms'));
+                Config::set('myconfig.sms.number', '9995050149');
+                Config::set('myconfig.sms.message', $msg);
                 $sms = sendSms(Config::get('myconfig.sms'));
                 echo "OTP has been successfully sent to registered mobile number!";
             else:
@@ -76,7 +80,8 @@ class PatientController extends Controller
 
     public function appointment(){
         $branches = DB::table('branches')->get();
-        return view('appointment.create', compact('branches'));
+        $patients = DB::table('patient_registrations')->where('mobile_number', Session::get('patient')->mobile_number)->get();
+        return view('appointment.create', compact('branches', 'patients'));
     }
 
     public function saveAppointment(Request $request){

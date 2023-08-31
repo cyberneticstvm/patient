@@ -13,7 +13,7 @@
         <div class="col-lg-12">
             <div class="card card-body mb-4 ">
                 <table id="dataTable" class="table table-sm table-striped">
-                    <thead><tr><th>SL No<th>Patient Name</th><th>Mobile Number</th><th>Appointment Date</th><th>Time</th><th>Doctor</th><th>Branch</th></tr></thead><tbody>
+                    <thead><tr><th>SL No<th>Patient Name</th><th>Mobile Number</th><th>Appointment Date</th><th>Time</th><th>Doctor</th><th>Branch</th><th>Status</th></tr></thead><tbody>
                         @forelse($data as $key => $item)
                         <tr>
                             <td>{{ $key+1 }}</td>
@@ -23,6 +23,7 @@
                             <td>{{ $item->appointment_time }}</td>
                             <td>{{ ($item->doctor) ? doctors()->where('id', $item->doctor)->first()->doctor_name : '' }}</td>
                             <td>{{ branches()->where('id', $item->branch)->first()->branch_name }}</td>
+                            <td>{{ ($item->doctor && $item->appointment_time) ? 'Confirmed' : 'Pending' }}</td>
                         </tr>
                         @empty
                         @endforelse
