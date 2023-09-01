@@ -39,7 +39,7 @@ setTimeout(function () {
 }, 5000);
 function counter(){
     var timerId = setInterval(countdown, 1000);
-    var timeLeft = 30;
+    var timeLeft = 180;
     var elem = document.getElementById('otp');
     function countdown() {
         if (timeLeft == -1) {
