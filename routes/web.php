@@ -18,8 +18,11 @@ Route::middleware(['web'])->controller(PatientController::class)->group(function
     Route::get('/', 'login')->name('login');    
     Route::get('/otp', 'generateOtp')->name('otp.generate');
     Route::post('/', 'validateOtp')->name('otp.validate');
+});
+Route::middleware(['web', 'check'])->controller(PatientController::class)->group(function(){
     Route::get('/dashboard', 'dashboard')->name('dashboard');  
     Route::get('/prescription', 'prescription')->name('prescription');    
+    Route::get('//prescription/download/{id}', 'prescriptionHTML')->name('prescription.html');    
     Route::get('/appointments', 'appointments')->name('appointments');  
     Route::get('/appointment/create', 'appointment')->name('appointment.create');  
     Route::post('/appointment/create', 'saveAppointment')->name('appointment.save');  
@@ -28,5 +31,4 @@ Route::middleware(['web'])->controller(PatientController::class)->group(function
     Route::post('/feedback/create', 'saveFeedback')->name('feedback.save');
     Route::get('/logout', 'logout')->name('logout');  
 });
-//Route::get('/prescription/download/{id}', [PatientController::class, 'prescriptionPDF'])->name('prescription.pdf');
-Route::get('/prescription/download/{id}', [PatientController::class, 'prescriptionHTML'])->name('prescription.html');
+
