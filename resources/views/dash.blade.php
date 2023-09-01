@@ -13,7 +13,7 @@
             <div class="card card-body mb-4">
                 <article class="icontext">
                     <div class="text">
-                        <h6 class="mb-1 card-title"><span>My Appointments</span></h6>
+                        <h6 class="mb-1 card-title"><span><a href="{{ route('appointments') }}">Appointments</a></span></h6>
                         <span class="text-sm">
                             <a href="{{ route('appointments') }}">View / Make Appointments</a>
                         </span>
@@ -26,9 +26,9 @@
             <div class="card card-body mb-4">
                 <article class="icontext">
                     <div class="text">
-                        <h6 class="mb-1 card-title"><span>My Prescriptions</span></h6>
+                        <h6 class="mb-1 card-title"><span><a href="{{ route('prescription') }}">Prescriptions</a></span></h6>
                         <span class="text-sm">
-                        <a href="{{ route('prescription') }}">View / Download Spectacle Prescription</a>
+                            <a href="{{ route('prescription') }}">View / Download Spectacle Prescription</a>
                         </span>
                     </div>
                 </article>
@@ -38,7 +38,7 @@
             <div class="card card-body mb-4">
                 <article class="icontext">
                     <div class="text">
-                        <h6 class="mb-1 card-title"><span>My Feedback</span></h6>
+                        <h6 class="mb-1 card-title"><span><a href="{{ route('feedbacks') }}">Feedback</a></span></h6>
                         <span class="text-sm">
                             <a href="{{ route('feedbacks') }}">View / Submit Feedback</a>
                         </span>

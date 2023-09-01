@@ -31,14 +31,14 @@ class PatientController extends Controller
                 DB::table('patient_registrations')->where('mobile_number', $request->mobile)->update(['otp' => $otp]);
             else:
                 $id = DB::table('patient_bookings')->insertGetId(
-                    ['patient_name' => 'Guest', 'mobile_number' => $request->mobile, 'otp' => $otp]
+                    ['patient_name' => 'Guest', 'mobile_number' => $request->mobile, 'otp' => $otp, 'created_at' => Carbon::now(), 'updated_at' => Carbon::now()]
                 );
             endif;
-            $msg = "Dear User, Your OTP for login to Devi Eye Hospital Portal is ".$otp." valid for 15 minutes. Please do not share this OTP. Regards Devi Eye Hospitals.";                
+            /*$msg = "Dear User, Your OTP for login to Devi Eye Hospital Portal is ".$otp." valid for 15 minutes. Please do not share this OTP. Regards Devi Eye Hospitals.";                
             Config::set('myconfig.sms.number', $request->mobile);
             Config::set('myconfig.sms.message', $msg);
-            $sms = sendSms(Config::get('myconfig.sms'));
-            echo "OTP has been successfully sent to registered mobile number!";
+            $sms = sendSms(Config::get('myconfig.sms'));*/
+            echo "1";
         endif;
     }
 
