@@ -77,6 +77,11 @@ class PatientController extends Controller
         $pdf->output();    
         //return $pdf->stream('prescription.pdf', array("Attachment"=>true));
     }
+    public function prescriptionHTML($id){
+        $spectacle = DB::table('spectacles')->where('patient_id', Session::get('patient')->id)->where('id', $id)->first();
+        $patient = DB::table('patient_registrations')->find(Session::get('patient')->id);
+        return view('prescription.html', compact('spectacle', 'patient'));
+    }
 
     public function appointments(){
         if(Session::get('patient')->patient_name == 'Guest'):
