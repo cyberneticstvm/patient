@@ -70,7 +70,8 @@ class PatientController extends Controller
 
     public function prescriptionPDF($id){
         $spectacle = DB::table('spectacles')->where('patient_id', Session::get('patient')->id)->where('id', $id)->first();
-        $patient = DB::table('patient_registrations')->find(Session::get('patient')->id);      
+        $patient = DB::table('patient_registrations')->find(Session::get('patient')->id);
+        ob_clean();      
         $pdf = PDF::loadView('/prescription/pdf', ['spectacle' => $spectacle, 'patient' => $patient]);
         return $pdf->stream('prescription.pdf', array("Attachment"=>false));
     }
