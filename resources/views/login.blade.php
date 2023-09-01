@@ -32,7 +32,7 @@
                             @enderror
                         </div> <!-- form-group// -->
                         <div class="mb-3">
-                            <a href="javascript:void(0)" id="otp" class="float-end font-sm text-primary otp fw-bold fs-5 mb-3">Click here to generate OTP</a>
+                            <a href="javascript:void(0)" id="otp" class="float-end font-sm text-primary otp fw-bold fs-6 mb-3">Click here to generate OTP</a>
                         </div> <!-- form-group form-check .// -->
                         <div class="mb-3">
                             <input class="form-control" name="otp" placeholder="OTP" type="text" maxlength="4">

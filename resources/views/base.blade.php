@@ -74,6 +74,13 @@
                 </ul>
             </div>
         </header>
+        <section class="container">
+            <div class="row">
+                <div class="col-md-12 text-center mt-3">
+                    <a href="{{ route('dashboard') }}" class="btn btn-primary">Back to Dashboard</a>
+                </div>
+            </div>
+        </section>
         @yield("content")
         <footer class="main-footer font-xs">
             <div class="row pb-30 pt-15">

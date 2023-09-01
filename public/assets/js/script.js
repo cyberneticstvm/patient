@@ -44,7 +44,7 @@ function counter(){
     function countdown() {
         if (timeLeft == -1) {
             clearTimeout(timerId);
-            $("#otp").html("Click here to generate OTP").removeClass('fs-6 text-muted').addClass("otp text-primary fw-bold");
+            $("#otp").html("Click here to generate OTP").removeClass('fs-6 text-muted').addClass("otp fs-6 text-primary fw-bold");
         } else {
             elem.innerHTML = "You can resend OTP after "+timeLeft + ' seconds';
             timeLeft--;
