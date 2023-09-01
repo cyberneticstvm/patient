@@ -74,7 +74,7 @@ class PatientController extends Controller
         $pdf = PDF::loadView('/prescription/pdf', ['spectacle' => $spectacle, 'patient' => $patient]);
         header("Content-Type: application/octet-stream");
         header("Content-Disposition: attachment; filename=prescription.pdf");
-        return $pdf->output();    
+        $pdf->output();    
         //return $pdf->stream('prescription.pdf', array("Attachment"=>true));
     }
 
