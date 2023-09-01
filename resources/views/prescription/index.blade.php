@@ -18,7 +18,7 @@
                             <td>{{ $key+1 }}</td>
                             <td>{{ $item->medical_record_id }}</td>
                             <td>{{ date('d/M/Y', strtotime($item->created_at)) }}</td>
-                            <td class="text-center"><a href="{{ route('prescription.pdf', encrypt($item->id)) }}" target="_blank"><i class="fa fa-file"></i></a></td>
+                            <td class="text-center"><a href="{{ route('prescription.pdf', $item->id) }}" target="_blank"><i class="fa fa-file"></i></a></td>
                         </tr>
                         @empty
                         @endforelse
