@@ -26,17 +26,19 @@ class PatientController extends Controller
             echo "Not a valid mobile number!";
         else:
             $patient = DB::table('patient_registrations')->where('mobile_number', $request->mobile)->first();
-            if($patient):
-                $otp = random_int(1000, 9999);
+            $otp = random_int(1000, 9999);
+            if($patient):                
                 DB::table('patient_registrations')->where('mobile_number', $request->mobile)->update(['otp' => $otp]);
-                $msg = "Dear User, Your OTP for login to Devi Eye Hospital Portal is ".$otp." valid for 15 minutes. Please do not share this OTP. Regards Devi Eye Hospitals.";                
-                Config::set('myconfig.sms.number', $request->mobile);
-                Config::set('myconfig.sms.message', $msg);
-                $sms = sendSms(Config::get('myconfig.sms'));
-                echo "OTP has been successfully sent to registered mobile number!";
             else:
-                echo "No records found with provided mobile number!";
+                $id = DB::table('patient_bookings')->insertGetId(
+                    ['patient_name' => 'Guest', 'mobile_number' => $request->mobile, 'otp' => $otp]
+                );
             endif;
+            $msg = "Dear User, Your OTP for login to Devi Eye Hospital Portal is ".$otp." valid for 15 minutes. Please do not share this OTP. Regards Devi Eye Hospitals.";                
+            Config::set('myconfig.sms.number', $request->mobile);
+            Config::set('myconfig.sms.message', $msg);
+            $sms = sendSms(Config::get('myconfig.sms'));
+            echo "OTP has been successfully sent to registered mobile number!";
         endif;
     }
 
@@ -46,9 +48,12 @@ class PatientController extends Controller
             'otp' => 'required|numeric|digits:4',
         ]);
         $patient = DB::table('patient_registrations')->where('mobile_number', $request->mobile)->where('otp', $request->otp)->first();
+        $patient_new = DB::table('patient_bookings')->where('mobile_number', $request->mobile)->where('otp', $request->otp)->first();        
         if($patient && $patient->otp):
-            //Auth::login($patient);
             Session::put('patient', $patient);
+            return redirect()->route('dashboard')->with("success", "OTP Succesfully Validated");
+        elseif($patient_new && $patient_new->otp):
+            Session::put('patient', $patient_new);
             return redirect()->route('dashboard')->with("success", "OTP Succesfully Validated");
         endif;
         return redirect()->back()->withInput($request->all())->with("error", "Invalid access");
@@ -71,7 +76,11 @@ class PatientController extends Controller
     }
 
     public function appointments(){
-        $data = DB::table('appointments')->where('patient_id', Session::get('patient')->id)->orWhere('mobile_number', Session::get('patient')->mobile_number)->latest()->get();
+        if(Session::get('patient')->patient_name == 'Guest'):
+            $data = DB::table('appointments')->Where('mobile_number', Session::get('patient')->mobile_number)->latest()->get();
+        else:
+            $data = DB::table('appointments')->where('patient_id', Session::get('patient')->id)->orWhere('mobile_number', Session::get('patient')->mobile_number)->latest()->get();
+        endif;
         return view('appointment.index', compact('data'));
     }
 
@@ -137,7 +146,11 @@ class PatientController extends Controller
     }
 
     public function logout(Request $request){
-        DB::table('patient_registrations')->where('id', Session::get('patient')->id)->update(['otp' => NULL]);
+        if(Session::get('patient')->patient_name == 'Guest'):
+            DB::table('patient_bookings')->where('id', Session::get('patient')->id)->update(['otp' => NULL]);
+        else:
+            DB::table('patient_registrations')->where('id', Session::get('patient')->id)->update(['otp' => NULL]);
+        endif;
         Auth::guard('web')->logout();
         $request->session()->invalidate();
         $request->session()->flush();

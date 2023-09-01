@@ -44,9 +44,11 @@
                         <span class="text">Main Menu</span>
                     </a>
                     <div class="submenu">
-                        <a href="{{ route('prescription') }}">My Prescriptions</a>
                         <a href="{{ route('appointments') }}">My Appointments</a>
-                        <a href="{{ route('feedbacks') }}">My Feedback</a>
+                        @if(Session::get('patient')->patient_name != 'Guest')                        
+                            <a href="{{ route('prescription') }}">My Prescriptions</a>                        
+                            <a href="{{ route('feedbacks') }}">My Feedback</a>
+                        @endif
                     </div>
                 </li>
             </ul>

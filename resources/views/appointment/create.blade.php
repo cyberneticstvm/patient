@@ -15,6 +15,17 @@
                     <div class="row">
                         <div class="col-md-8">
                             <div class="row">
+                                @if(Session::get('patient')->patient_name == 'Guest')
+                                <div class="col-6">
+                                    <div class="mb-3">
+                                        <label class="form-label">Patient Name</label>
+                                        {{ html()->text($name = 'patient_name', NULL)->class('form-control')->placeholder('Patient Name') }}
+                                        @error('patient_name')
+                                        <small class="text-danger">{{ $errors->first('patient_name') }}</small>
+                                        @enderror
+                                    </div> <!-- form-group// -->
+                                </div>
+                                @else
                                 <div class="col-6">
                                     <div class="mb-3">
                                         <label class="form-label">Patient Name</label>
@@ -24,6 +35,7 @@
                                         @enderror
                                     </div> <!-- form-group// -->
                                 </div>
+                                @endif
                                 <div class="col-6">
                                     <div class="mb-3">
                                         <label class="form-label">Mobile Number</label>
@@ -64,19 +76,31 @@
                         </div>
                         <div class="col-md-4 card">
                             <div class="row">
+                                @if(Session::get('patient')->patient_name == 'Guest')
                                 <div class="col-6">
                                     <div class="mb-3">
-                                        <label class="form-label">Appointment for (Patient ID)</label>
+                                        <label class="form-label">Appointment for</label>
+                                        {{ html()->select($name = 'patient_id', $value = array(0 => 'Myself'), 0)->class('form-control select2')->placeholder('Select') }}
+                                        @error('patient_id')
+                                        <small class="text-danger">{{ $errors->first('patient_id') }}</small>
+                                        @enderror
+                                    </div> <!-- form-group// -->
+                                </div>
+                                @else:
+                                <div class="col-6">
+                                    <div class="mb-3">
+                                        <label class="form-label">Appointment for</label>
                                         {{ html()->select($name = 'patient_id', $value = array(Session::get('patient')->id => 'Myself', 0 => 'Other'), Session::get('patient')->id)->class('form-control select2')->placeholder('Select') }}
                                         @error('patient_id')
                                         <small class="text-danger">{{ $errors->first('patient_id') }}</small>
                                         @enderror
                                     </div> <!-- form-group// -->
                                 </div>
+                                @endif
                                 <div class="col-6">
                                     <div class="mb-3">
                                         <label class="form-label">Appointment Date</label>
-                                        {{ html()->date($name = 'appointment_date', $value = date('Y-m-d'))->class('form-control') }}
+                                        {{ html()->date($name = 'appointment_date', $value = date('Y-m-d', strtotime('+1 day')))->attribute('min', date('Y-m-d', strtotime('+1 day')))->class('form-control') }}
                                         @error('appointment_date')
                                         <small class="text-danger">{{ $errors->first('appointment_date') }}</small>
                                         @enderror
@@ -101,7 +125,7 @@
                         </div>
                         <div class="mb-4 text-center">                                
                             <button type="button" onclick="history.back()" class="btn btn-warning">Cancel</button>
-                            <button type="submit" onClick="javascript: return confirm('Are you sure want to proceed?')" class="btn btn-submit btn-primary">Submit</button>
+                            <button type="submit" class="btn btn-submit btn-primary">Submit</button>
                         </div> <!-- form-group// -->
                         </div>
                     </div>

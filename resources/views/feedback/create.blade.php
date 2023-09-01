@@ -37,7 +37,7 @@
                         </div>
                         <div class="mb-4 text-center">                                
                             <button type="button" onclick="history.back()" class="btn btn-warning">Cancel</button>
-                            <button type="submit" onClick="javascript: return confirm('Are you sure want to proceed?')" class="btn btn-submit btn-primary">Submit</button>
+                            <button type="submit" class="btn btn-submit btn-primary">Submit</button>
                         </div> <!-- form-group// -->
                         </div>
                     </div>

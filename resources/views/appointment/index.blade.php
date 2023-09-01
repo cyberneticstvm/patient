@@ -22,7 +22,7 @@
                             <td>{{ date('d/M/Y', strtotime($item->appointment_date)) }}</td>
                             <td>{{ $item->appointment_time }}</td>
                             <td>{{ ($item->doctor) ? doctors()->where('id', $item->doctor)->first()->doctor_name : '' }}</td>
-                            <td>{{ branches()->where('id', $item->branch)->first()->branch_name }}</td>
+                            <td>{{ branches()->where('id', $item->branch)->first()->display_name }}</td>
                             <td>{{ ($item->doctor && $item->appointment_time) ? 'Confirmed' : 'Pending' }}</td>
                         </tr>
                         @empty
