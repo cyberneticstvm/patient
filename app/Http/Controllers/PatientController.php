@@ -72,7 +72,7 @@ class PatientController extends Controller
         $spectacle = DB::table('spectacles')->where('patient_id', Session::get('patient')->id)->where('id', decrypt($id))->first();
         $patient = DB::table('patient_registrations')->find(Session::get('patient')->id);      
         $pdf = PDF::loadView('/prescription/pdf', ['spectacle' => $spectacle, 'patient' => $patient]);    
-        return $pdf->stream('prescription.pdf', array("Attachment"=>0));
+        return $pdf->download('prescription.pdf', array("Attachment"=>0));
     }
 
     public function appointments(){
