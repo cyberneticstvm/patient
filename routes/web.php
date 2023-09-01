@@ -29,4 +29,4 @@ Route::middleware(['web'])->controller(PatientController::class)->group(function
     Route::get('/logout', 'logout')->name('logout');  
 });
 Route::get('/prescription/download/{id}', [PatientController::class, 'prescriptionPDF'])->name('prescription.pdf');
-Route::get('/prescription/download/{id}', [PatientController::class, 'prescriptionHTML'])->name('prescription.html');
+//Route::get('/prescription/download/{id}', [PatientController::class, 'prescriptionHTML'])->name('prescription.html');
