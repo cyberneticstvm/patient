@@ -71,8 +71,11 @@ class PatientController extends Controller
     public function prescriptionPDF($id){
         $spectacle = DB::table('spectacles')->where('patient_id', Session::get('patient')->id)->where('id', decrypt($id))->first();
         $patient = DB::table('patient_registrations')->find(Session::get('patient')->id);      
-        $pdf = PDF::loadView('/prescription/pdf', ['spectacle' => $spectacle, 'patient' => $patient]);    
-        return $pdf->stream('prescription.pdf', array("Attachment"=>0));
+        $pdf = PDF::loadView('/prescription/pdf', ['spectacle' => $spectacle, 'patient' => $patient]);
+        header("Content-Type: application/octet-stream");
+        header("Content-Disposition: attachment; filename=prescription.pdf");
+        return $pdf->output();    
+        //return $pdf->stream('prescription.pdf', array("Attachment"=>true));
     }
 
     public function appointments(){
