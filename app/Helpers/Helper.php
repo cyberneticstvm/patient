@@ -19,7 +19,7 @@ function sendSms($sms){
 }
 
 function branches(){
-    return DB::table('branches')->get();
+    return DB::table('branches')->where('booking_available', 1)->get();
 }
 
 function doctors(){

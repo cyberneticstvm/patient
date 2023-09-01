@@ -12,7 +12,7 @@
     <meta property="og:url" content="">
     <meta property="og:image" content="">
     <!-- Favicon -->
-    <link rel="shortcut icon" type="image/x-icon" href="{{ asset('/assets/imgs/misc/Devi-Logo-Transparent.jpg') }}">    
+    <link rel="shortcut icon" type="image/x-icon" href="{{ asset('/assets/imgs/devi-logo.jpeg') }}">    
     <!-- Template CSS -->
     <link href="{{ asset('/assets/css/main.css') }}" rel="stylesheet" type="text/css" />
     <link href="https://cdn.datatables.net/1.13.6/css/dataTables.bootstrap5.min.css" rel="stylesheet" type="text/css" />
@@ -26,7 +26,7 @@
     <aside class="navbar-aside" id="offcanvas_aside">
         <div class="aside-top">
             <a href="{{ route('dashboard') }}" class="brand-wrap">
-                <img src="{{ asset('/assets/imgs/misc/Devi-Logo-Transparent.jpg') }}" class="logo" alt="Dashboard">
+                <img src="{{ asset('/assets/imgs/devi-logo.jpeg') }}" class="logo" alt="Dashboard">
             </a>
             <div>
                 <button class="btn btn-icon btn-aside-minimize"> <i class="text-muted material-icons md-menu_open"></i> </button>

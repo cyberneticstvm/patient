@@ -85,7 +85,7 @@ class PatientController extends Controller
     }
 
     public function appointment(){
-        $branches = DB::table('branches')->get();
+        $branches = DB::table('branches')->where('booking_available', 1)->get();
         $patients = DB::table('patient_registrations')->where('mobile_number', Session::get('patient')->mobile_number)->get();
         return view('appointment.create', compact('branches', 'patients'));
     }

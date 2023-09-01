@@ -12,7 +12,7 @@
     <meta property="og:url" content="">
     <meta property="og:image" content="">
     <!-- Favicon -->
-    <link rel="shortcut icon" type="image/x-icon" href="{{ asset('/assets/imgs/theme/favicon.svg') }}">
+    <link rel="shortcut icon" type="image/x-icon" href="{{ asset('/assets/imgs/devi-logo.jpeg') }}">
     <!-- Template CSS -->
     <link href="{{ asset('/assets/css/main.css') }}" rel="stylesheet" type="text/css" />
 </head>
@@ -21,7 +21,8 @@
         <section class="content-main mt-80">
             <div class="card mx-auto card-login">
                 <div class="card-body">
-                    <h4 class="card-title mb-4">Customer Sign in</h4>
+                    <div class="text-center"><img src="{{ asset('/assets/imgs/devi-logo.jpeg') }}" class="logo img-fluid" width="50%" alt="Devi EH"></div>
+                    <h4 class="card-title mb-4">Sign in</h4>
                     <form method="POST" action="{{ route('login') }}">
                         @csrf
                         <div class="mb-3">
