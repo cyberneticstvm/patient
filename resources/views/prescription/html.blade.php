@@ -30,5 +30,6 @@
 </head>
 <body>
     {{ $patient->patient_name}}
+    <button onclick="window.print()">Print</button>
 </body>
 </html>
