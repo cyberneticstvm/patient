@@ -22,7 +22,7 @@ Route::middleware(['web'])->controller(PatientController::class)->group(function
 Route::middleware(['web', 'check'])->controller(PatientController::class)->group(function(){
     Route::get('/dashboard', 'dashboard')->name('dashboard');  
     Route::get('/prescription', 'prescription')->name('prescription');    
-    Route::get('//prescription/download/{id}', 'prescriptionHTML')->name('prescription.html');    
+    Route::get('/prescription/download/{id}', 'prescriptionHTML')->name('prescription.html');    
     Route::get('/appointments', 'appointments')->name('appointments');  
     Route::get('/appointment/create', 'appointment')->name('appointment.create');  
     Route::post('/appointment/create', 'saveAppointment')->name('appointment.save');  
