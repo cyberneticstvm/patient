@@ -11,7 +11,7 @@
     <div class="row">
         <div class="col-12">@include("message")</div>
         <div class="col-lg-12">
-            <div class="card card-body mb-4 ">
+            <div class="card card-body mb-4 table-responsive">
                 <table id="dataTable" class="table table-sm table-striped">
                     <thead><tr><th>SL No<th>Date</th><th>Type</th><th>Feedback</th></tr></thead><tbody>
                         @forelse($data as $key => $item)

@@ -34,10 +34,10 @@ class PatientController extends Controller
                     ['patient_name' => 'Guest', 'mobile_number' => $request->mobile, 'otp' => $otp, 'created_at' => Carbon::now(), 'updated_at' => Carbon::now()]
                 );
             endif;
-            $msg = "Dear User, Your OTP for login to Devi Eye Hospital Portal is ".$otp." valid for 15 minutes. Please do not share this OTP. Regards Devi Eye Hospitals.";                
+            /*$msg = "Dear User, Your OTP for login to Devi Eye Hospital Portal is ".$otp." valid for 15 minutes. Please do not share this OTP. Regards Devi Eye Hospitals.";                
             Config::set('myconfig.sms.number', $request->mobile);
             Config::set('myconfig.sms.message', $msg);
-            $sms = sendSms(Config::get('myconfig.sms'));
+            $sms = sendSms(Config::get('myconfig.sms'));*/
             echo "1";
         endif;
     }

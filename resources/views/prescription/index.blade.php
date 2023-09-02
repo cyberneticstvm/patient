@@ -10,7 +10,7 @@
     </div>
     <div class="row">
         <div class="col-lg-12">
-            <div class="card card-body mb-4 ">
+            <div class="card card-body mb-4 table-responsive">
                 <table id="dataTable" class="table table-sm table-striped">
                     <thead><tr><th>SL No<th>Medical Record No</th><th>Date</th><th>View/Download</th></tr></thead><tbody>
                         @forelse($data as $key => $item)
