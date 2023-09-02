@@ -29,6 +29,6 @@
     </style>
 </head>
 <body>
-    {{ $patient->patient_name}}
+    {{ $patient->patient_name}}<br>
 </body>
 </html>
