@@ -71,21 +71,23 @@ class PatientController extends Controller
     public function prescriptionPDF($id){
         $spectacle = DB::table('spectacles')->where('patient_id', Session::get('patient')->id)->where('id', $id)->first();
         $patient = DB::table('patient_registrations')->find(Session::get('patient')->id);
-        ob_clean();      
+        $mref = DB::table('patient_references')->find($spectacle->medical_record_id);      
         $pdf = PDF::loadView('/prescription/pdf', ['spectacle' => $spectacle, 'patient' => $patient]);
         return $pdf->stream('prescription.pdf', array("Attachment"=>false));
     }
     public function prescriptionHTML($id){
         $spectacle = DB::table('spectacles')->where('patient_id', Session::get('patient')->id)->where('id', $id)->first();
         $patient = DB::table('patient_registrations')->find(Session::get('patient')->id);
-        return view('prescription.html', compact('spectacle', 'patient'));
+        $mref = DB::table('patient_references')->find($spectacle->medical_record_id);
+        $branch = DB::table('branches')->find($mref->branch);
+        return view('prescription.html', compact('spectacle', 'patient', 'branch'));
     }
 
     public function appointments(){
         if(Session::get('patient')->patient_name == 'Guest'):
             $data = DB::table('appointments')->Where('mobile_number', Session::get('patient')->mobile_number)->latest()->get();
         else:
-            $data = DB::table('appointments')->where('patient_id', Session::get('patient')->id)->orWhere('mobile_number', Session::get('patient')->mobile_number)->latest()->get();
+            $data = DB::table('appointments')->whereDate('appointment_date', '>=', Carbon::today())->where('patient_id', Session::get('patient')->id)->orWhere('mobile_number', Session::get('patient')->mobile_number)->latest()->get();
         endif;
         return view('appointment.index', compact('data'));
     }
@@ -118,8 +120,8 @@ class PatientController extends Controller
             'appointment_date' => $request->appointment_date,
             'branch' => $request->branch,
             'type' => 'app',
-            'created_by' => 0,
-            'updated_by' => 0,
+            'created_by' => Session::get('patient')->id,
+            'updated_by' => Session::get('patient')->id,
             'created_at' => Carbon::now(),
             'updated_at' => Carbon::now(),
         ]);
