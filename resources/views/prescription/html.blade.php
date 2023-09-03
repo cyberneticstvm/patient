@@ -50,7 +50,7 @@
         <br>
         <div class="col">
             <table width="100%" class="bordered" cellspacing="0" cellpadding="0">
-            <tr><td><b>RIGHT</b></td><td><b>SPH</b></td><td><b>CYL</b></td><td><b>AXIS</b></td><td><b>BCV</b></td><td><b>PRISM</b></td></tr>
+            <tr><td><b>LEFT</b></td><td><b>SPH</b></td><td><b>CYL</b></td><td><b>AXIS</b></td><td><b>BCV</b></td><td><b>PRISM</b></td></tr>
                 <tr><td>DIST.</td><td>{{ ($spectacle->le_dist_sph) ? $spectacle->le_dist_sph : '0.00' }}</td><td>{{ ($spectacle->le_dist_cyl) ? $spectacle->le_dist_cyl : '0.00' }}</td><td>{{ ($spectacle->le_dist_axis) ? $spectacle->le_dist_axis : '0.00' }}</td><td>{{ ($spectacle->le_dist_va) ? $spectacle->le_dist_va : '--' }}</td><td>{{ ($spectacle->le_dist_prism) ? $spectacle->le_dist_prism : '--' }}</td></tr>
                 <tr><td>INT.</td><td>{{ ($spectacle->le_int_sph) ? $spectacle->le_int_sph : '0.00' }}</td><td>{{ ($spectacle->le_int_cyl) ? $spectacle->le_int_cyl : '0.00' }}</td><td>{{ ($spectacle->le_int_axis) ? $spectacle->le_int_axis : '0.00' }}</td><td>{{ ($spectacle->le_int_va) ? $spectacle->le_int_va : '--' }}</td><td>{{ ($spectacle->le_int_prism) ? $spectacle->le_int_prism : '--' }}</td></tr>
                 <tr><td>NEAR.</td><td>{{ ($spectacle->le_near_sph) ? $spectacle->le_near_sph : '0.00' }}</td><td>{{ ($spectacle->le_near_cyl) ? $spectacle->le_near_cyl : '0.00' }}</td><td>{{ $spectacle->le_near_axis ? $spectacle->le_near_axis : '0.00' }}</td><td>{{ ($spectacle->le_near_va) ? $spectacle->le_near_va : '--' }}</td><td>{{ ($spectacle->le_near_prism) ? $spectacle->le_near_prism : '--' }}</td></tr>
