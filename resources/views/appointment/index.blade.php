@@ -11,6 +11,7 @@
     <div class="row">
         <div class="col-12">@include("message")</div>
         <div class="col-lg-12">
+            <p>Call: <a href="tel:+919188836222">+91 9188836222</a></p>
             <div class="card card-body mb-4 table-responsive">
                 <table id="dataTable" class="table table-sm table-striped">
                     <thead><tr><th>SL No<th>Patient Name</th><th>Mobile Number</th><th>Appointment Date</th><th>Time</th><th>Doctor</th><th>Branch</th><th>Status</th></tr></thead><tbody>
