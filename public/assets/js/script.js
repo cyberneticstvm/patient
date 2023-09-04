@@ -20,9 +20,10 @@ $(function(){
             data: {'mobile': $("#mobile").val()},
             success: function(response){
                 if(response.trim() == 1){
-                    $(".msg").html('OTP sent to mobile number successfully');
-                    $("#otp").addClass('fs-6 text-muted').removeClass("otp text-primary fw-bold");
+                    $("#otp").html("");
                     counter();
+                    $(".msg").html('OTP sent to mobile number successfully');
+                    $("#otp").addClass('fs-6 text-muted').removeClass("otp text-primary fw-bold");                    
                 }else{
                     $(".msg").html(response);
                 }
