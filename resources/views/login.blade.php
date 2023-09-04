@@ -35,7 +35,7 @@
                             <a href="javascript:void(0)" id="otp" class="float-end font-sm text-primary otp fw-bold fs-6 mb-3">Click here to generate OTP</a>
                         </div> <!-- form-group form-check .// -->
                         <div class="mb-3">
-                            <input class="form-control" name="otp" placeholder="OTP" type="text" maxlength="4">
+                            <input class="form-control" name="otp" placeholder="OTP" type="password" maxlength="4">
                             @error('otp')
                             <small class="text-danger">{{ $errors->first('otp') }}</small>
                             @enderror
