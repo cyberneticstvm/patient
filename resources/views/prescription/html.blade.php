@@ -22,12 +22,12 @@
                 <td>PATIENT NAME</td>
                 <td>{{ $patient->patient_name }}</td>
                 <td>AGE / SEX</td>
-                <td>{{ $patient->age }} / {{ $patient->gender }}</td>
+                <td>{{ $patient->age }} / {{ ucfirst($patient->gender) }}</td>
             </tr>
             <tr>
                 <td>PATIENT ID</td>
                 <td>{{ $patient->patient_id }}</td>
-                <td>PRESCRIPTION NUMBER</td>
+                <td>PRESCRIPTION ID</td>
                 <td>{{ $spectacle->id }}</td>
             </tr>
         </tbody>
