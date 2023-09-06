@@ -67,7 +67,8 @@ class PatientController extends Controller
     }
 
     public function prescription(){
-        $data = DB::table('spectacles')->where('patient_id', Session::get('patient')->id)->latest()->get();
+        $patients = DB::table('patient_registrations')->where('mobile_number', Session::get('patient')->mobile_number)->pluck('id');
+        $data = DB::table('spectacles')->whereIn('patient_id', $patients)->latest()->get();
         return view('prescription.index', compact('data'));
     }
 

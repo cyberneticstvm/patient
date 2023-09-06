@@ -4,7 +4,7 @@
     <div class="content-header">
         <div>
             <h2 class="content-title card-title">Spectacle Prescription </h2>
-            <p>Hello, {{ Session::get('patient')->patient_name }}</p>
+            <p>Hello, {{ Session::get('patient')->patient_name }}, Patient ID: <span class="text-primary">{{ Session::get('patient')->patient_id }}</span></p>
         </div>
         @include("message")
     </div>
