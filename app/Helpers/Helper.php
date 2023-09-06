@@ -26,4 +26,8 @@ function doctors(){
     return DB::table('doctors')->get();
 }
 
+function getPatient($id){
+    return DB::table('patient_registrations')->find($id);
+}
+
 ?>

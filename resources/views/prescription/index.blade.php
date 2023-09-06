@@ -12,11 +12,13 @@
         <div class="col-lg-12">
             <div class="card card-body mb-4 table-responsive">
                 <table id="dataTable" class="table table-sm table-striped">
-                    <thead><tr><th>SL No<th>Medical Record No</th><th>Date</th><th>View/Download</th></tr></thead><tbody>
+                    <thead><tr><th>SL No<th>Medical Record No</th><th>Patient ID</th><th>Patient Name</th><th>Date</th><th>View/Download</th></tr></thead><tbody>
                         @forelse($data as $key => $item)
                         <tr>
                             <td>{{ $key+1 }}</td>
                             <td>{{ $item->medical_record_id }}</td>
+                            <td>{{ getPatient()->patient_id }}</td>
+                            <td>{{ getPatient()->patient_name }}</td>
                             <td>{{ date('d/M/Y', strtotime($item->created_at)) }}</td>
                             <td class="text-center"><a href="{{ route('prescription.html', $item->id) }}"><i class="fa fa-file"></i></a></td>
                         </tr>
