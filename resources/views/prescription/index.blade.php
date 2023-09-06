@@ -17,8 +17,8 @@
                         <tr>
                             <td>{{ $key+1 }}</td>
                             <td>{{ $item->medical_record_id }}</td>
-                            <td>{{ getPatient()->patient_id }}</td>
-                            <td>{{ getPatient()->patient_name }}</td>
+                            <td>{{ getPatient($item->patient_id)->patient_id }}</td>
+                            <td>{{ getPatient($item->patient_id)->patient_name }}</td>
                             <td>{{ date('d/M/Y', strtotime($item->created_at)) }}</td>
                             <td class="text-center"><a href="{{ route('prescription.html', $item->id) }}"><i class="fa fa-file"></i></a></td>
                         </tr>
