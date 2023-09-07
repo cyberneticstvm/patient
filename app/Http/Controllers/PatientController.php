@@ -80,9 +80,9 @@ class PatientController extends Controller
         return $pdf->stream('prescription.pdf', array("Attachment"=>false));
     }
     public function prescriptionHTML($id){
-        $spectacle = DB::table('spectacles')->where('id', $id)->first();
-        $patient = DB::table('patient_registrations')->find(Session::get('patient')->id);
+        $spectacle = DB::table('spectacles')->where('id', $id)->first();        
         $mref = DB::table('patient_references')->find($spectacle->medical_record_id);
+        $patient = DB::table('patient_registrations')->find($mref->patient_id);
         $branch = DB::table('branches')->find($mref->branch);
         return view('prescription.html', compact('spectacle', 'patient', 'branch'));
     }
